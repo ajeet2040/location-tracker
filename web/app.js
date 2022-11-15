@@ -8,6 +8,8 @@ let saveLocationBaseUrl = 'http://localhost:8000/api'
 const inputBox = document.querySelector("#location-name")
 const results = document.querySelector(".results")
 const saveLocation = document.querySelector("#save-location")
+const saveLocationForm = document.querySelector("#location-form")
+
 
 let suggestedItems
 let selectedLocationId
@@ -15,6 +17,8 @@ let fetchedLocations
 
 inputBox.addEventListener('keyup', locationFinder, false)
 saveLocation.addEventListener('click', saveLocationHandler, false)
+saveLocationForm.addEventListener('submit', saveLocationFormHandler, false)
+
 
 // Fetch location via geonames
 async function getLocationDetails(locationName) {
@@ -63,17 +67,23 @@ function handleLocationSelection(element) {
     })
 }
 
+const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
 // save location handler
 async function saveLocationHandler(evt) {
-    console.log("location", evt)
     let email = document.getElementById("email").value
     let location = document.getElementById("location-name").value
-    let locationInfo = fetchedLocations.find(o => o.geonameId === selectedLocationId);
 
-    console.log("locationInfo", locationInfo)
-    if(email == '' || location == ''){
+    if(email == '' || location == '' || validateEmail(email) === null){
         return
     }
+
+  
+    let locationInfo = fetchedLocations.find(o => o.geonameId === selectedLocationId);
     let locationDetails = {
         "email_id": email,
         "latitiude": locationInfo.lat,
@@ -92,6 +102,10 @@ async function saveLocationHandler(evt) {
         alert("Failed to save. Please try again!")
     }
 
+}
+
+function saveLocationFormHandler(evt) {
+    evt.preventDefault()
 }
 
 // Fetch location via geonames
