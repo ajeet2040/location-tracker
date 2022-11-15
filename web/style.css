@@ -19,6 +19,8 @@ body {
     position: relative;
 }
 .input-box {
+    display: block;
+    margin-top: 2rem;
     font-size: 1rem;
     padding: 7px 10px;
     outline: none;
