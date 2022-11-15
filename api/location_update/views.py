@@ -4,7 +4,7 @@ from location_update.models import StaffLocation
 from location_update.serializers import StaffLocationSerializer
 
 
-class StaffLocationViewSet(generics.CreateAPIView):
+class StaffLocationViewSet(generics.ListCreateAPIView):
     """
     This view set automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
