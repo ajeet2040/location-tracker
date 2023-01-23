@@ -13,6 +13,11 @@ const results = document.querySelector(".results")
 const saveLocation = document.querySelector("#save-location")
 const saveLocationForm = document.querySelector("#location-form")
 
+const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
 
 let suggestedItems
 let selectedLocationId
@@ -70,11 +75,7 @@ function handleLocationSelection(element) {
     })
 }
 
-const validateEmail = (email) => {
-    return email.match(
-      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-};
+
 
 // save location handler
 async function saveLocationHandler(evt) {
