@@ -1,3 +1,6 @@
+// For webpack bundling
+import './style.css';
+
 // Constants
 // TODO Capture from environment varaibles
 let geonamesBaseUrl = 'http://api.geonames.org'
